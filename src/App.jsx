@@ -1,10 +1,16 @@
 import { useState } from 'react'
 export function App() {
   const  [numero, setNumero] = useState(100);
-  const [textnone, setTextnone] = useState(false);
-  const Mostrar = textnone ? 'Esconder' : 'Mostrar';
+  const [mostraresconder, setMostraresconder ] = useState(false);
   function aumentar() {
     setNumero(numero + 100);
+  }
+  function handleMostarEsconder() {
+    if (mostraresconder === true) {
+      setMostraresconder(false);
+      return
+    }
+    setMostraresconder(true)
   }
   return (
       <div className='flex flex-col items-center justify-center'>
@@ -12,8 +18,8 @@ export function App() {
         <button onClick={aumentar} className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Aumentar</button>
 
 
-        <p className='text-3xl font-bold hidden' style={{display: textnone ? 'none' : 'block'}}>oi</p>
-        <button className='bg-red-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' onClick={() => setTextnone(!textnone)}>{Mostrar}</button>
+        {mostraresconder === true ? <p className='text-3xl font-bold'>Yago Vidal</p> : ""}
+        <button className='bg-red-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' onClick={handleMostarEsconder}>{mostraresconder === true ? "Esconder" : "Mostrar"}</button>
       </div>
   )
  
